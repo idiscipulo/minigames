@@ -1448,7 +1448,7 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "Win Condition",
+          "comment": "Win condition",
           "comment2": ""
         },
         {
@@ -1564,7 +1564,12 @@
         "zoomFactor": 1
       },
       "objectsGroups": [],
-      "variables": [],
+      "variables": [
+        {
+          "name": "FishCount",
+          "value": "3"
+        }
+      ],
       "instances": [
         {
           "angle": 0,
@@ -1884,6 +1889,10 @@
             {
               "name": "Velocity",
               "value": "0"
+            },
+            {
+              "name": "Caught",
+              "value": "false"
             }
           ],
           "behaviors": [
@@ -2350,13 +2359,13 @@
             {
               "type": {
                 "inverted": false,
-                "value": "VarObjet"
+                "value": "VarObjetTxt"
               },
               "parameters": [
                 "Hook",
-                "Velocity",
+                "Caught",
                 "=",
-                "2"
+                "\"false\""
               ],
               "subInstructions": []
             }
@@ -2398,6 +2407,124 @@
                 "VelocityUp",
                 "=",
                 "-2"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjetTxt"
+              },
+              "parameters": [
+                "Hook",
+                "Caught",
+                "=",
+                "\"true\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PosY"
+              },
+              "parameters": [
+                "Fish",
+                "<=",
+                "150"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "Fish",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "FishCount",
+                "-",
+                "1"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjetTxt"
+              },
+              "parameters": [
+                "Hook",
+                "Caught",
+                "=",
+                "\"false\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Win Condition",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "FishCount",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Quit"
+              },
+              "parameters": [
+                ""
               ],
               "subInstructions": []
             }
